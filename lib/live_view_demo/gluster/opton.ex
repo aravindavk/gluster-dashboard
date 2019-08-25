@@ -13,7 +13,7 @@ defmodule LiveViewDemo.Gluster.Opton do
   @doc false
   def changeset(opton, attrs) do
     opton
-    |> cast(attrs, [:name, :value])
-    |> validate_required([:name, :value])
+    |> cast(attrs, [:name, :value, :volume_id])
+    |> validate_required([:name, :value, :volume_id])
   end
 end

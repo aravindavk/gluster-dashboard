@@ -9,10 +9,10 @@ defmodule LiveViewDemo.Repo.Migrations.CreateBricks do
       add :device, :string
       add :mount_options, :string
       add :block_size, :integer
-      add :size_total, :integer
-      add :size_used, :integer
-      add :inodes_total, :integer
-      add :inodes_used, :integer
+      add :size_total, :bigint
+      add :size_used, :bigint
+      add :inodes_total, :bigint
+      add :inodes_used, :bigint
       add :pid, :integer
       add :port, :integer
       add :volume_id, references(:volumes, on_delete: :nothing, type: :string)

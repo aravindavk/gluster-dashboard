@@ -25,7 +25,7 @@ defmodule LiveViewDemo.Gluster.Brick do
   @doc false
   def changeset(brick, attrs) do
     brick
-    |> cast(attrs, [:path, :state, :fs, :device, :mount_options, :block_size, :size_total, :size_used, :inodes_total, :inodes_used, :pid, :port])
-    |> validate_required([:path, :state, :fs, :device, :mount_options, :block_size, :size_total, :size_used, :inodes_total, :inodes_used, :pid, :port])
+    |> cast(attrs, [:path, :state, :fs, :device, :mount_options, :block_size, :size_total, :size_used, :inodes_total, :inodes_used, :pid, :port, :volume_id, :subvol_id, :peer_id])
+    |> validate_required([:path, :state, :fs, :device, :mount_options, :block_size, :size_total, :size_used, :inodes_total, :inodes_used, :pid, :port, :volume_id, :subvol_id, :peer_id])
   end
 end

@@ -19,7 +19,7 @@ defmodule LiveViewDemo.Gluster.Subvol do
   @doc false
   def changeset(subvol, attrs) do
     subvol
-    |> cast(attrs, [:id, :health, :replica_count, :arbiter_count, :disperse_count, :disperse_redundancy_count, :type, :num_bricks])
-    |> validate_required([:id, :health, :replica_count, :arbiter_count, :disperse_count, :disperse_redundancy_count, :type, :num_bricks])
+    |> cast(attrs, [:id, :health, :replica_count, :arbiter_count, :disperse_count, :disperse_redundancy_count, :type, :num_bricks, :volume_id])
+    |> validate_required([:id, :health, :replica_count, :arbiter_count, :disperse_count, :disperse_redundancy_count, :type, :num_bricks, :volume_id])
   end
 end

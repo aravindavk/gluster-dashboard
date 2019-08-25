@@ -15,10 +15,10 @@ defmodule LiveViewDemo.Repo.Migrations.CreateVolumes do
       add :disperse_count, :integer
       add :disperse_redundancy_count, :integer
       add :transport, :string
-      add :size_total, :integer
-      add :size_used, :integer
-      add :inodes_total, :integer
-      add :inodes_used, :integer
+      add :size_total, :bigint
+      add :size_used, :bigint
+      add :inodes_total, :bigint
+      add :inodes_used, :bigint
 
       timestamps()
     end
