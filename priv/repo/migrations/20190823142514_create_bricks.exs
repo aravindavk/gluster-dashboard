@@ -15,9 +15,9 @@ defmodule LiveViewDemo.Repo.Migrations.CreateBricks do
       add :inodes_used, :integer
       add :pid, :integer
       add :port, :integer
-      add :volume_id, references(:volumes, on_delete: :nothing)
-      add :subvol_id, references(:subvols, on_delete: :nothing)
-      add :peer_id, references(:peers, on_delete: :nothing)
+      add :volume_id, references(:volumes, on_delete: :nothing, type: :string)
+      add :subvol_id, references(:subvols, on_delete: :nothing, type: :string)
+      add :peer_id, references(:peers, on_delete: :nothing, type: :string)
 
       timestamps()
     end

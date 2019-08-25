@@ -102,6 +102,28 @@ defmodule LiveViewDemo.Gluster do
     Peer.changeset(peer, %{})
   end
 
+  @doc """
+  Creates or updates a peer.
+
+  ## Examples
+
+      iex> create_or_update_peer(%{field: value})
+      {:ok, %Peer{}}
+
+      iex> create_or_update_peer(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_or_update_peer(attrs \\ %{}) do
+    result =
+      case Repo.get(Peer, attrs["id"]) do
+        nil  -> %Peer{}
+        peer -> peer
+      end
+      |> Peer.changeset(attrs)
+      |> Repo.insert_or_update
+  end
+
   alias LiveViewDemo.Gluster.Volume
 
   @doc """
@@ -196,6 +218,28 @@ defmodule LiveViewDemo.Gluster do
   """
   def change_volume(%Volume{} = volume) do
     Volume.changeset(volume, %{})
+  end
+
+  @doc """
+  Creates or updates a volume.
+
+  ## Examples
+
+      iex> create_or_update_volume(%{field: value})
+      {:ok, %Volume{}}
+
+      iex> create_or_update_volume(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_or_update_volume(attrs \\ %{}) do
+    result =
+      case Repo.get(Volume, attrs["id"]) do
+        nil  -> %Volume{}
+        volume -> volume
+      end
+      |> Volume.changeset(attrs)
+      |> Repo.insert_or_update
   end
 
   alias LiveViewDemo.Gluster.Subvol
@@ -294,6 +338,28 @@ defmodule LiveViewDemo.Gluster do
     Subvol.changeset(subvol, %{})
   end
 
+  @doc """
+  Creates or updates a subvol.
+
+  ## Examples
+
+      iex> create_or_update_subvol(%{field: value})
+      {:ok, %Subvol{}}
+
+      iex> create_or_update_subvol(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_or_update_subvol(attrs \\ %{}) do
+    result =
+      case Repo.get(Subvol, attrs["id"]) do
+        nil  -> %Subvol{}
+        subvol -> subvol
+      end
+      |> Subvol.changeset(attrs)
+      |> Repo.insert_or_update
+  end
+
   alias LiveViewDemo.Gluster.Opton
 
   @doc """
@@ -390,6 +456,28 @@ defmodule LiveViewDemo.Gluster do
     Opton.changeset(opton, %{})
   end
 
+  @doc """
+  Creates or updates a option.
+
+  ## Examples
+
+      iex> create_or_update_option(%{field: value})
+      {:ok, %Option{}}
+
+      iex> create_or_update_option(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_or_update_option(attrs \\ %{}) do
+    result =
+      case Repo.get_by(Opton, [name: attrs["name"], volume_id: attrs["volume_id"]]) do
+        nil  -> %Opton{}
+        opt -> opt
+      end
+      |> Opton.changeset(attrs)
+      |> Repo.insert_or_update
+  end
+
   alias LiveViewDemo.Gluster.Brick
 
   @doc """
@@ -484,5 +572,27 @@ defmodule LiveViewDemo.Gluster do
   """
   def change_brick(%Brick{} = brick) do
     Brick.changeset(brick, %{})
+  end
+
+  @doc """
+  Creates or updates a brick.
+
+  ## Examples
+
+      iex> create_or_update_brick(%{field: value})
+      {:ok, %Brick{}}
+
+      iex> create_or_update_brick(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_or_update_brick(attrs \\ %{}) do
+    result =
+      case Repo.get_by(Brick, [peer_id: attrs["peer_id"], path: attrs["path"], volume_id: attrs["volume_id"]]) do
+        nil  -> %Brick{}
+        brick -> brick
+      end
+      |> Brick.changeset(attrs)
+      |> Repo.insert_or_update
   end
 end

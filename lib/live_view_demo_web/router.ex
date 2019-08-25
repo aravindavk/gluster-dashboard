@@ -22,7 +22,10 @@ defmodule LiveViewDemoWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", LiveViewDemoWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", LiveViewDemoWeb do
+    pipe_through :api
+
+    post "/webhook/volumes", WebhookVolumeController, :create_or_update
+    post "/webhook/peers", WebhookPeerController, :create_or_update
+  end
 end

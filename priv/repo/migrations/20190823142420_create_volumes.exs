@@ -2,8 +2,8 @@ defmodule LiveViewDemo.Repo.Migrations.CreateVolumes do
   use Ecto.Migration
 
   def change do
-    create table(:volumes) do
-      add :volid, :string
+    create table(:volumes, primary_key: false) do
+      add :id, :string, primary_key: true
       add :name, :string
       add :type, :string
       add :state, :string

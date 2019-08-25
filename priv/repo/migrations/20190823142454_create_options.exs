@@ -5,7 +5,7 @@ defmodule LiveViewDemo.Repo.Migrations.CreateOptions do
     create table(:options) do
       add :name, :string
       add :value, :string
-      add :volume_id, references(:volumes, on_delete: :nothing)
+      add :volume_id, references(:volumes, on_delete: :nothing, type: :string)
 
       timestamps()
     end

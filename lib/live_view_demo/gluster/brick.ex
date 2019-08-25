@@ -15,9 +15,9 @@ defmodule LiveViewDemo.Gluster.Brick do
     field :size_total, :integer
     field :size_used, :integer
     field :state, :string
-    field :volume_id, :id
-    field :subvol_id, :id
-    field :peer_id, :id
+    field :volume_id, :string
+    field :subvol_id, :string
+    field :peer_id, :string
 
     timestamps()
   end
