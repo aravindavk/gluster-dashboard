@@ -1,0 +1,7 @@
+{
+	"fileVersion": 1,
+	"versions": {
+		"arsd-official": "4.0.2",
+		"glustercli": "0.1.1"
+	}
+}

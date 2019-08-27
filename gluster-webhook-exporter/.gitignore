@@ -1,0 +1,14 @@
+.dub
+docs.json
+__dummy.html
+gluster-webhook-exporter
+gluster-webhook-exporter.so
+gluster-webhook-exporter.dylib
+gluster-webhook-exporter.dll
+gluster-webhook-exporter.a
+gluster-webhook-exporter.lib
+gluster-webhook-exporter-test-*
+*.exe
+*.o
+*.obj
+*.lst
