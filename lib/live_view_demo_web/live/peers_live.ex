@@ -10,7 +10,12 @@ defmodule LiveViewDemoWeb.PeersLive do
   end
 
   def mount(_session, socket) do
+    Gluster.subscribe()
     {:ok, put_peers_details(socket)}
+  end
+
+  def handle_info({Gluster, :cluster_changed}, socket) do
+    {:noreply, put_peers_details(socket)}
   end
 
   defp put_peers_details(socket) do

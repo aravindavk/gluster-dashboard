@@ -10,11 +10,18 @@ defmodule LiveViewDemoWeb.VoldetailsLive do
   end
 
   def mount(%{volname: volname}, socket) do
+    Gluster.subscribe()
     socket = assign(socket, volname: volname)
     {:ok, put_volumes_details(socket)}
   end
 
+  def handle_info({Gluster, :cluster_changed}, socket) do
+    {:noreply, put_volumes_details(socket)}
+  end
+
   defp put_volumes_details(socket) do
-    assign(socket, volume: Gluster.get_volume_by_name(socket.assigns.volname), counts: Gluster.get_counts())
+    details = Gluster.get_volume_by_name(socket.assigns.volname)
+    counts = Gluster.get_counts()
+    assign(socket, volume: details, counts: counts)
   end
 end

@@ -8,26 +8,18 @@ import glustercli;
 
 void main(string[] args)
 {
-    auto peerUrl = args[1] ~ "/peers";
-    auto volUrl = args[1] ~ "/volumes";
-    writeln(peerUrl, volUrl);
-    
-    auto peers = peerStatus();
-    auto jsonValPeers = JSONValue(["peers": peers.map!(peer => peer.toJson).array]);
-    auto peerDetails = jsonValPeers.toJSON(false, JSONOptions.doNotEscapeSlashes);
-    writeln(peerDetails);
-    auto httpPeer = HTTP();
-    httpPeer.addRequestHeader("Content-Type", "application/json");
-    auto contentPeer = post(peerUrl, peerDetails, httpPeer);
-    writeln("pushed peer details to the webhook: ", args[1], contentPeer);
-
-    auto vols = volumeStatus();
-    auto jsonValVols = JSONValue(["volumes": vols.map!(vol => vol.toJson).array]);
-    auto volDetails = jsonValVols.toJSON(false, JSONOptions.doNotEscapeSlashes);
-    writeln(volDetails);
-
-    auto httpVol = HTTP();
-    httpVol.addRequestHeader("Content-Type", "application/json");
-    auto contentVol = post(volUrl, volDetails, httpVol);
-    writeln("pushed volume details to the webhook: ", args[1], contentVol);
+    auto url = args[1];
+    auto jsonVal = JSONValue(
+        [
+            "peers": peerStatus().map!(peer => peer.toJson).array,
+            "volumes": volumeStatus().map!(vol => vol.toJson).array
+        ]);
+    auto details = jsonVal.toJSON(false, JSONOptions.doNotEscapeSlashes);
+    writeln("DATA: --------------------------");
+    writeln(details);
+    writeln();
+    auto http = HTTP();
+    http.addRequestHeader("Content-Type", "application/json");
+    auto content = post(url, details, http);
+    writeln("[OK] pushed peer and volume details to the webhook: ", url, content);
 }

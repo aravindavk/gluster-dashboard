@@ -31,7 +31,6 @@ defmodule LiveViewDemoWeb.Router do
   scope "/api", LiveViewDemoWeb do
     pipe_through :api
 
-    post "/webhook/volumes", WebhookVolumeController, :create_or_update
-    post "/webhook/peers", WebhookPeerController, :create_or_update
+    post "/webhook", WebhookController, :create_or_update
   end
 end

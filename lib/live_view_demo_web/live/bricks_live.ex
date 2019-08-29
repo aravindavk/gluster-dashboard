@@ -10,7 +10,12 @@ defmodule LiveViewDemoWeb.BricksLive do
   end
 
   def mount(_session, socket) do
+    Gluster.subscribe()
     {:ok, put_bricks_details(socket)}
+  end
+
+  def handle_info({Gluster, :cluster_changed}, socket) do
+    {:noreply, put_bricks_details(socket)}
   end
 
   defp put_bricks_details(socket) do
