@@ -107,10 +107,12 @@ defmodule LiveViewDemoWeb.HelperView do
   end
 
   def top_summary(counts, obj) do
+    import Timex.Timezone
+
     ~E"""
     <%= if obj != nil do %>
     <div class="last-synced-msg">
-        Last updated <strong><%= obj.updated_at |> Calendar.Strftime.strftime!("%b %d, %Y %H:%M:%S") %></strong>
+        Last updated <strong><%= convert(obj.updated_at, local()) |> Calendar.Strftime.strftime!("%b %d, %Y %l:%M %P") %></strong>
     </div>
     <% end %>
     <div>

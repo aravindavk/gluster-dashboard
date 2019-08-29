@@ -228,11 +228,11 @@ table {
 
 .utilization-container{
     width: 150px;
-    height: 15px;
+    height: 12px;
     background-color: #eee;
 }
 .utilization-value {
-    height: 15px;
+    height: 12px;
 }
 
 .utilization-text, .utilization-p-text{
