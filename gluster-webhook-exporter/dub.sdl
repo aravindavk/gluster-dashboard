@@ -3,7 +3,7 @@ description "Export Gluster Volume and Peer info to Webhook"
 authors "Aravinda VK <mail@aravindavk.in>"
 copyright "Copyright © 2019, Aravinda VK <mail@aravindavk.in>"
 license "Apache-2.0"
-dependency "glustercli" version="~>0.1.1"
+dependency "glustercli" version="~>0.1.2"
 dependency "arsd-official:dom" version="~>4.0.2"
 
 dflags "-static" "-link-defaultlib-shared=false" platform="linux-ldc"

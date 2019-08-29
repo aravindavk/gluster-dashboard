@@ -55,3 +55,4 @@ mix phx.gen.context Gluster Brick bricks \
     inodes_used:integer \
     pid:integer \
     port:integer
+

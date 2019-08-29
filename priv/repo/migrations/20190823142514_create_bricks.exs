@@ -15,15 +15,15 @@ defmodule LiveViewDemo.Repo.Migrations.CreateBricks do
       add :inodes_used, :bigint
       add :pid, :integer
       add :port, :integer
-      add :volume_id, references(:volumes, on_delete: :nothing, type: :string)
-      add :subvol_id, references(:subvols, on_delete: :nothing, type: :string)
-      add :peer_id, references(:peers, on_delete: :nothing, type: :string)
+      add :volumes_id, references(:volumes, on_delete: :nothing, type: :string)
+      add :subvols_id, references(:subvols, on_delete: :nothing, type: :string)
+      add :peers_id, references(:peers, on_delete: :nothing, type: :string)
 
       timestamps()
     end
 
-    create index(:bricks, [:volume_id])
-    create index(:bricks, [:subvol_id])
-    create index(:bricks, [:peer_id])
+    create index(:bricks, [:volumes_id])
+    create index(:bricks, [:subvols_id])
+    create index(:bricks, [:peers_id])
   end
 end

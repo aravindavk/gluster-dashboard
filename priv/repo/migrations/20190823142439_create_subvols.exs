@@ -11,11 +11,11 @@ defmodule LiveViewDemo.Repo.Migrations.CreateSubvols do
       add :disperse_redundancy_count, :integer
       add :type, :string
       add :num_bricks, :integer
-      add :volume_id, references(:volumes, on_delete: :nothing, type: :string)
+      add :volumes_id, references(:volumes, on_delete: :nothing, type: :string)
 
       timestamps()
     end
 
-    create index(:subvols, [:volume_id])
+    create index(:subvols, [:volumes_id])
   end
 end

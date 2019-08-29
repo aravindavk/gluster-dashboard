@@ -1,0 +1,24 @@
+<div class="content-box">
+  <%= top_summary(@counts, Enum.at(@peers, 0)) %>
+  <div class="clear"></div>
+  <table class="pure-table pure-table-horizontal peers-table">
+    <thead>
+      <tr>
+        <th>Peer</th>
+        <th>State</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for peer <- @peers do %>
+          <tr>
+            <td><%= peer.address %></td>
+            <td>
+              <span class="<%=  peer_state_htmlclass(peer) %>">
+                <%= peer.state %>
+              </span>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

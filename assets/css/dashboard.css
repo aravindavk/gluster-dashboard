@@ -1,0 +1,257 @@
+body{
+    background-color: #eee;
+    margin:0;
+    padding: 0;
+}
+a, a:active, a:focus{
+    outline:none !important;
+}
+.dashboard-header{
+    position: fixed;
+    background-color: #fff;
+    width: 100%;
+    color: #fff;
+    box-shadow: 0 0 11px rgba(0,0,0,0.14);
+    z-index: 2000;
+    top:0;
+}
+.menu-title{
+    float: left;
+    margin-left: 240px;
+    color: #222;
+}
+.sidebar{
+    padding-top: 70px;
+    position: fixed;
+    float: left;
+    width: 170px;
+    background-color: #2D4256;
+    height: 100%;
+    color: #fff;
+    box-shadow: 5px 5px 15px #444;
+}
+.dashboard-header h2{
+    margin: 0;
+    padding: 10px;
+    width: 170px;
+    height: 50px;
+    background-color: #263544;
+}
+.logo-first{
+    color: #fff;
+}
+.logo-last{
+    color: gold;
+}
+.sidebar ul{
+    list-style-type: none;
+    margin: 0;
+    padding-left: 0px;
+}
+.sidebar li{
+    /* padding: 5px 10px; */
+}
+.sidebar li a{
+    text-decoration: none;
+    color: #eee;
+}
+
+.sidebar li{
+    border-left: 7px solid #2D4256;
+}
+
+.sidebar li.selected{
+    border-left: 7px solid #42a5f5;
+}
+.sidebar li:hover {
+    background-color: #2D4256;
+}
+.sidebar .pure-menu-link{
+    display: inline-block;
+    padding-right: 2px;
+}
+.sidebar a:hover{
+    background-color: #2D4256;
+    color: #42a5f5;
+}
+.sidebar li:focus, .sidebar a:focus{
+    background-color: #2D4256;
+    border: 0;
+}
+.widget{
+    width: 400px;
+    height: 2250px;
+    background-color: #fff;
+    margin: 20px;
+}
+.dashboard-content{
+
+}
+.main{
+    margin-left: 190px;
+    padding-top: 45px;
+}
+.main h2 {
+    margin-bottom: 0;
+}
+.last-synced-msg{
+    float: right;
+    background-color: yellow;
+    color: #222;
+    padding: 20px;
+    height: 50px;
+    margin: -30px -30px auto auto;
+}
+.last-synced-msg button{
+    height: 50px;
+}
+.clear{
+    clear: both;
+    height: 40px;
+    width: 100%;
+}
+.text-button{
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+}
+.volume-detail-title{
+    font-size: 20px;
+    margin-left: 20px;
+}
+.volumes-table{
+    margin-top: 10px;
+}
+.volume-detail-table{
+    margin-top: 10px;
+}
+.volumes-table tr{
+    cursor: pointer;
+}
+.volumes-table td{
+    padding: 5px 5px 5px 10px;
+}
+.content-box{
+    background-color: #fff;
+    padding: 30px;
+    margin-right: 50px;
+}
+.options-box{
+    float: right;
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid #eee;
+}
+.summary-box {
+    padding: 20px;
+    background-color: #eee;
+    box-shadow: #bbb 2px 2px 5px;
+    width: 250px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    float: left;
+    margin-right: 20px;
+}
+
+.box-value{
+    display:block;
+    font-size: 40px;
+}
+table {
+    /* border-spacing: 0; */
+    /* border-collapse: collapse; */
+    /* border: 1px solid #ddd; */
+    /* padding: 20px; */
+    /* margin: 20px; */
+    background-color: #fff;
+    /* box-shadow: 5px 5px 15px #777; */
+}
+
+.volumes-table tbody tr:hover{
+    background-color: #eee;
+}
+
+.volume-id, .node-id{
+    color: #555;
+}
+
+.volume-type-details{
+    color: #555;
+}
+
+.bricks-status-grid{
+
+}
+.bricks-status-grid-col{
+    width: 20px;
+    float: left;
+}
+
+.brick-status-grid-box {
+    width: 100%;
+    height: 20px;
+    margin-bottom: 1px;
+}
+
+.grid-status-up {
+    background-color: green;
+}
+
+.volume-state-down, .volume-state-up, .volume-state-partial, .volume-state-degraded, .volume-state-stopped, .peer-state-online, .brick-state-online, .volume-state-down, .peer-state-offline, .brick-state-offline {
+    display: inline-block;
+    padding:2px 10px;
+    border-radius: 5px;
+}
+
+.volume-state-up, .peer-state-online, .brick-state-online {
+    background-color: green;
+    color: #fff;
+}
+
+.volume-state-down, .peer-state-offline, .brick-state-offline {
+    background-color: #FF5370;
+    color: #fff;
+}
+
+.volume-state-partial {
+    background-color: #00fa9a;
+}
+
+.volume-state-degraded {
+    background-color: #ff8c00;
+}
+
+.volume-state-stopped {
+    background-color: gray;
+    color: #fff;
+}
+
+.utilization-container{
+    width: 150px;
+    height: 15px;
+    background-color: #eee;
+}
+.utilization-value {
+    height: 15px;
+}
+
+.utilization-text, .utilization-p-text{
+    color: #333;
+    font-size: 13px;
+}
+
+.utilization-above-10, .utilization-above-20, .utilization-above-30, .utilization-above-40, .utilization-above-50, .utilization-above-60{
+    background-color: green;
+}
+
+.utilization-above-70 {
+    background-color: #00fa9a;
+}
+
+.utilization-above-80 {
+    background-color: #ff8c00;
+}
+
+.utilization-above-90 {
+    background-color: red;
+}

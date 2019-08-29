@@ -1,0 +1,39 @@
+<div class="content-box">
+    <%= top_summary(@counts, Enum.at(@volumes, 0)) %>
+    <div class="clear"></div>
+    <table class="pure-table pure-table-horizontal volumes-table">
+        <thead>
+            <tr>
+                <th>Volume</th>
+                <th>State</th>
+                <th>Type</th>
+                <th>Utilization</th>
+                <th>Inodes Utilization</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= for volume <- @volumes do %>
+                <tr key=<%= volume.name %> onclick="window.location='/dashboard/volumes/<%= volume.name %>';">
+                    <td><%= volume.name %><br/>
+                        <span class="volume-id"><%= volume.id %></span>
+                    </td>
+                    <td>
+                        <span class="<%=  volume_state_htmlclass(volume) %>">
+                            <%= volume_status(volume) %>
+                        </span>
+                    </td>
+                    <td>
+                        <%= volume.type %><br/>
+                        <span class="volume-type-details"><%= get_volume_type_details(volume) %><%= get_subvol_details(volume) %></span>
+                    </td>
+                    <td>
+                        <%= utilization(volume.size_used, volume.size_total, false) %>
+                    </td>
+                    <td>
+                        <%= utilization(volume.inodes_used, volume.inodes_total, true) %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

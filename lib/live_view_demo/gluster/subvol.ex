@@ -11,7 +11,9 @@ defmodule LiveViewDemo.Gluster.Subvol do
     field :num_bricks, :integer
     field :replica_count, :integer
     field :type, :string
-    field :volume_id, :string
+
+    belongs_to :volumes, LiveViewDemo.Gluster.Volume, [type: :string, foreign_key: :volumes_id]
+    has_many :bricks, LiveViewDemo.Gluster.Brick, foreign_key: :subvols_id
 
     timestamps()
   end
@@ -19,7 +21,7 @@ defmodule LiveViewDemo.Gluster.Subvol do
   @doc false
   def changeset(subvol, attrs) do
     subvol
-    |> cast(attrs, [:id, :health, :replica_count, :arbiter_count, :disperse_count, :disperse_redundancy_count, :type, :num_bricks, :volume_id])
-    |> validate_required([:id, :health, :replica_count, :arbiter_count, :disperse_count, :disperse_redundancy_count, :type, :num_bricks, :volume_id])
+    |> cast(attrs, [:id, :health, :replica_count, :arbiter_count, :disperse_count, :disperse_redundancy_count, :type, :num_bricks, :volumes_id])
+    |> validate_required([:id, :health, :replica_count, :arbiter_count, :disperse_count, :disperse_redundancy_count, :type, :num_bricks, :volumes_id])
   end
 end

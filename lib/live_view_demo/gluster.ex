@@ -155,6 +155,11 @@ defmodule LiveViewDemo.Gluster do
   """
   def get_volume!(id), do: Repo.get!(Volume, id)
 
+  def get_volume_by_name(volname) do
+    Repo.get_by(Volume, name: volname)
+    |> Repo.preload([:subvols, [bricks: :peers], :options])
+  end
+
   @doc """
   Creates a volume.
 
@@ -360,7 +365,7 @@ defmodule LiveViewDemo.Gluster do
       |> Repo.insert_or_update
   end
 
-  alias LiveViewDemo.Gluster.Opton
+  alias LiveViewDemo.Gluster.Option
 
   @doc """
   Returns the list of options.
@@ -368,92 +373,92 @@ defmodule LiveViewDemo.Gluster do
   ## Examples
 
       iex> list_options()
-      [%Opton{}, ...]
+      [%Option{}, ...]
 
   """
   def list_options do
-    Repo.all(Opton)
+    Repo.all(Option)
   end
 
   @doc """
-  Gets a single opton.
+  Gets a single option.
 
-  Raises `Ecto.NoResultsError` if the Opton does not exist.
+  Raises `Ecto.NoResultsError` if the Option does not exist.
 
   ## Examples
 
-      iex> get_opton!(123)
-      %Opton{}
+      iex> get_option!(123)
+      %Option{}
 
-      iex> get_opton!(456)
+      iex> get_option!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_opton!(id), do: Repo.get!(Opton, id)
+  def get_option!(id), do: Repo.get!(Option, id)
 
   @doc """
-  Creates a opton.
+  Creates a option.
 
   ## Examples
 
-      iex> create_opton(%{field: value})
-      {:ok, %Opton{}}
+      iex> create_option(%{field: value})
+      {:ok, %Option{}}
 
-      iex> create_opton(%{field: bad_value})
+      iex> create_option(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_opton(attrs \\ %{}) do
-    %Opton{}
-    |> Opton.changeset(attrs)
+  def create_option(attrs \\ %{}) do
+    %Option{}
+    |> Option.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Updates a opton.
+  Updates a option.
 
   ## Examples
 
-      iex> update_opton(opton, %{field: new_value})
-      {:ok, %Opton{}}
+      iex> update_option(option, %{field: new_value})
+      {:ok, %Option{}}
 
-      iex> update_opton(opton, %{field: bad_value})
+      iex> update_option(option, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_opton(%Opton{} = opton, attrs) do
-    opton
-    |> Opton.changeset(attrs)
+  def update_option(%Option{} = option, attrs) do
+    option
+    |> Option.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Deletes a Opton.
+  Deletes a Option.
 
   ## Examples
 
-      iex> delete_opton(opton)
-      {:ok, %Opton{}}
+      iex> delete_option(option)
+      {:ok, %Option{}}
 
-      iex> delete_opton(opton)
+      iex> delete_option(option)
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_opton(%Opton{} = opton) do
-    Repo.delete(opton)
+  def delete_option(%Option{} = option) do
+    Repo.delete(option)
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking opton changes.
+  Returns an `%Ecto.Changeset{}` for tracking option changes.
 
   ## Examples
 
-      iex> change_opton(opton)
-      %Ecto.Changeset{source: %Opton{}}
+      iex> change_option(option)
+      %Ecto.Changeset{source: %Option{}}
 
   """
-  def change_opton(%Opton{} = opton) do
-    Opton.changeset(opton, %{})
+  def change_option(%Option{} = option) do
+    Option.changeset(option, %{})
   end
 
   @doc """
@@ -470,11 +475,11 @@ defmodule LiveViewDemo.Gluster do
   """
   def create_or_update_option(attrs \\ %{}) do
     result =
-      case Repo.get_by(Opton, [name: attrs["name"], volume_id: attrs["volume_id"]]) do
-        nil  -> %Opton{}
+      case Repo.get_by(Option, [name: attrs["name"], volumes_id: attrs["volumes_id"]]) do
+        nil  -> %Option{}
         opt -> opt
       end
-      |> Opton.changeset(attrs)
+      |> Option.changeset(attrs)
       |> Repo.insert_or_update
   end
 
@@ -491,6 +496,7 @@ defmodule LiveViewDemo.Gluster do
   """
   def list_bricks do
     Repo.all(Brick)
+    |> Repo.preload([:volumes, :peers])
   end
 
   @doc """
@@ -588,11 +594,19 @@ defmodule LiveViewDemo.Gluster do
   """
   def create_or_update_brick(attrs \\ %{}) do
     result =
-      case Repo.get_by(Brick, [peer_id: attrs["peer_id"], path: attrs["path"], volume_id: attrs["volume_id"]]) do
+      case Repo.get_by(Brick, [peers_id: attrs["peers_id"], peers_id: attrs["peers_id"], path: attrs["path"], volumes_id: attrs["volumes_id"]]) do
         nil  -> %Brick{}
         brick -> brick
       end
       |> Brick.changeset(attrs)
       |> Repo.insert_or_update
+  end
+
+  def get_counts() do
+    %{
+      volumes: Repo.one(from v in "volumes", select: count(v.id)),
+      peers: Repo.one(from p in "peers", select: count(p.id)),
+      bricks: Repo.one(from b in "bricks", select: count(b.id))
+    }
   end
 end

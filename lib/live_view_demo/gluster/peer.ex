@@ -7,6 +7,8 @@ defmodule LiveViewDemo.Gluster.Peer do
     field :address, :string
     field :state, :string
 
+    has_many :bricks, LiveViewDemo.Gluster.Brick, foreign_key: :peers_id
+
     timestamps()
   end
 

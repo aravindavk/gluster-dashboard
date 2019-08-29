@@ -19,6 +19,12 @@ defmodule LiveViewDemoWeb.Router do
 
     get "/", PageController, :index
     live "/clock", ClockLive
+
+    get "/dashboard", DashboardController, :volumes
+    get "/dashboard/volumes", DashboardController, :volumes
+    get "/dashboard/volumes/:volname", DashboardController, :volumes_detail
+    get "/dashboard/peers", DashboardController, :peers
+    get "/dashboard/bricks", DashboardController, :bricks
   end
 
   # Other scopes may use custom stacks.

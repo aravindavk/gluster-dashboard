@@ -1,0 +1,92 @@
+<div class="content-box">
+  <%= top_summary(@counts, @volume) %>
+  <div class="clear"></div>
+  <table class="pure-table pure-table-horizontal volume-detail-table">
+    <thead>
+      <tr>
+        <th>Volume</th>
+        <th>State</th>
+        <th>Type</th>
+        <th>Utilization</th>
+        <th>Inodes Utilization</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr key=<%= @volume.name %>>
+        <td><%= @volume.name %><br/>
+          <span class="volume-id"><%= @volume.id %></span>
+        </td>
+        <td>
+          <span class="<%=  volume_state_htmlclass(@volume) %>">
+            <%= volume_status(@volume) %>
+          </span>
+        </td>
+        <td>
+          <%= @volume.type %><br/>
+          <span class="volume-type-details"><%= get_volume_type_details(@volume) %><%= get_subvol_details(@volume) %></span>
+        </td>
+        <td>
+          <%= utilization(@volume.size_used, @volume.size_total, false) %>
+        </td>
+        <td>
+          <%= utilization(@volume.inodes_used, @volume.inodes_total, true) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Bricks</h2>
+  <table class="pure-table pure-table-horizontal bricks-table">
+    <thead>
+      <tr>
+        <th>Brick</th>
+        <th>State</th>
+        <th>FS</th>
+        <th>Utilization</th>
+        <th>Inodes Utilization</th>
+        <th>PID</th>
+        <th>Port</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for brick <- @volume.bricks do %>
+          <tr>
+            <td><%= brick.peers.address %>:<%= brick.path %><br/>
+              <span class="node-id">Peer ID: <%= brick.peers_id %></span>
+            </td>
+            <td><span class="<%=  brick_state_htmlclass(brick) %>">
+                <%= brick.state %>
+              </span>
+            </td>
+            <td><%= brick.fs %></td>
+            <td>
+              <%= utilization(brick.size_used, brick.size_total, false) %>
+            </td>
+            <td>
+              <%= utilization(brick.inodes_used, brick.inodes_total, true) %>
+            </td>
+            <td><%= brick.pid %></td>
+            <td><%= brick.port %></td>
+          </tr>
+          <% end %>
+    </tbody>
+  </table>
+
+  <h2>Options</h2>
+  <table class="pure-table pure-table-horizontal options-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for opt <- @volume.options do %>
+          <tr>
+            <td><%= opt.name %></td>
+            <td><%= opt.value %></td>
+          </tr>
+          <% end %>
+    </tbody>
+  </table>
+</div>

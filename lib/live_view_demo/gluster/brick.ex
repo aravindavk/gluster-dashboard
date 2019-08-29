@@ -15,9 +15,10 @@ defmodule LiveViewDemo.Gluster.Brick do
     field :size_total, :integer
     field :size_used, :integer
     field :state, :string
-    field :volume_id, :string
-    field :subvol_id, :string
-    field :peer_id, :string
+
+    belongs_to :subvols, LiveViewDemo.Gluster.Subvol, [type: :string, foreign_key: :subvols_id]
+    belongs_to :peers, LiveViewDemo.Gluster.Peer, [type: :string, foreign_key: :peers_id]
+    belongs_to :volumes, LiveViewDemo.Gluster.Volume, [type: :string, foreign_key: :volumes_id]
 
     timestamps()
   end
@@ -25,7 +26,7 @@ defmodule LiveViewDemo.Gluster.Brick do
   @doc false
   def changeset(brick, attrs) do
     brick
-    |> cast(attrs, [:path, :state, :fs, :device, :mount_options, :block_size, :size_total, :size_used, :inodes_total, :inodes_used, :pid, :port, :volume_id, :subvol_id, :peer_id])
-    |> validate_required([:path, :state, :fs, :device, :mount_options, :block_size, :size_total, :size_used, :inodes_total, :inodes_used, :pid, :port, :volume_id, :subvol_id, :peer_id])
+    |> cast(attrs, [:path, :state, :fs, :device, :mount_options, :block_size, :size_total, :size_used, :inodes_total, :inodes_used, :pid, :port, :volumes_id, :subvols_id, :peers_id])
+    |> validate_required([:path, :state, :fs, :device, :mount_options, :block_size, :size_total, :size_used, :inodes_total, :inodes_used, :pid, :port, :volumes_id, :subvols_id, :peers_id])
   end
 end

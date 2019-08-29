@@ -20,6 +20,10 @@ defmodule LiveViewDemo.Gluster.Volume do
     field :transport, :string
     field :type, :string
 
+    has_many :subvols, LiveViewDemo.Gluster.Subvol, foreign_key: :volumes_id
+    has_many :bricks, LiveViewDemo.Gluster.Brick, foreign_key: :volumes_id
+    has_many :options, LiveViewDemo.Gluster.Option, foreign_key: :volumes_id
+
     timestamps()
   end
 

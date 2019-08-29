@@ -1,0 +1,43 @@
+<div class="content-box">
+    <%= top_summary(@counts, Enum.at(@bricks, 0)) %>
+    <div class="clear"></div>
+    <table class="pure-table pure-table-horizontal bricks-table">
+        <thead>
+            <tr>
+                <th>Volume name</th>
+                <th>Brick</th>
+                <th>State</th>
+                <th>FS</th>
+                <th>Utilization</th>
+                <th>Inodes Utilization</th>
+                <th>PID</th>
+                <th>Port</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= for brick <- @bricks do %>
+                <tr>
+                    <td><%= brick.volumes.name %><br/>
+                        <span class="volume-id"><%= brick.volumes_id %></span>
+                    </td>
+                    <td><%= brick.peers.address %>:<%= brick.path %><br/>
+                        <span class="node-id">Peer ID: <%= brick.peers_id %></span>
+                    </td>
+                    <td><span class="<%=  brick_state_htmlclass(brick) %>">
+                        <%= brick.state %>
+                      </span>
+                    </td>
+                    <td><%= brick.fs %></td>
+                    <td>
+                        <%= utilization(brick.size_used, brick.size_total, false) %>
+                    </td>
+                    <td>
+                        <%= utilization(brick.inodes_used, brick.inodes_total, true) %>
+                    </td>
+                    <td><%= brick.pid %></td>
+                    <td><%= brick.port %></td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

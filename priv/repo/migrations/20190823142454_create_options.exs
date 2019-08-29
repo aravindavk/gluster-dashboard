@@ -5,11 +5,11 @@ defmodule LiveViewDemo.Repo.Migrations.CreateOptions do
     create table(:options) do
       add :name, :string
       add :value, :string
-      add :volume_id, references(:volumes, on_delete: :nothing, type: :string)
+      add :volumes_id, references(:volumes, on_delete: :nothing, type: :string)
 
       timestamps()
     end
 
-    create index(:options, [:volume_id])
+    create index(:options, [:volumes_id])
   end
 end
