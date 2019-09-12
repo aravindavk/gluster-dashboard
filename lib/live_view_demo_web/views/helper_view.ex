@@ -103,7 +103,7 @@ defmodule LiveViewDemoWeb.HelperView do
   end
 
   def get_subvol_details(volume) do
-    "Subvolumes: " <> (volume.num_subvols |> Integer.to_string) <> " Bricks: " <> (volume.num_bricks |> Integer.to_string)
+    " Subvolumes: " <> (volume.num_subvols |> Integer.to_string) <> " Bricks: " <> (volume.num_bricks |> Integer.to_string)
   end
 
   def top_summary(counts, obj) do
