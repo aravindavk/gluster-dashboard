@@ -1,3 +1,3 @@
-defmodule LiveViewDemoWeb.PageViewTest do
-  use LiveViewDemoWeb.ConnCase, async: true
+defmodule GlusterDashboardWeb.PageViewTest do
+  use GlusterDashboardWeb.ConnCase, async: true
 end

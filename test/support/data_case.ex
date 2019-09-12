@@ -1,4 +1,4 @@
-defmodule LiveViewDemo.DataCase do
+defmodule GlusterDashboard.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule LiveViewDemo.DataCase do
 
   using do
     quote do
-      alias LiveViewDemo.Repo
+      alias GlusterDashboard.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import LiveViewDemo.DataCase
+      import GlusterDashboard.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(LiveViewDemo.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(GlusterDashboard.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(LiveViewDemo.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(GlusterDashboard.Repo, {:shared, self()})
     end
 
     :ok

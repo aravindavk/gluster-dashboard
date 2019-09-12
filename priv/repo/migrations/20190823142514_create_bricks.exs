@@ -1,4 +1,4 @@
-defmodule LiveViewDemo.Repo.Migrations.CreateBricks do
+defmodule GlusterDashboard.Repo.Migrations.CreateBricks do
   use Ecto.Migration
 
   def change do

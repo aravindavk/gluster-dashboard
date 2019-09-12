@@ -1,10 +1,10 @@
-defmodule LiveViewDemo.GlusterTest do
-  use LiveViewDemo.DataCase
+defmodule GlusterDashboard.GlusterTest do
+  use GlusterDashboard.DataCase
 
-  alias LiveViewDemo.Gluster
+  alias GlusterDashboard.Gluster
 
   describe "peers" do
-    alias LiveViewDemo.Gluster.Peer
+    alias GlusterDashboard.Gluster.Peer
 
     @valid_attrs %{address: "some address", state: "some state"}
     @update_attrs %{address: "some updated address", state: "some updated state"}
@@ -65,7 +65,7 @@ defmodule LiveViewDemo.GlusterTest do
   end
 
   describe "volumes" do
-    alias LiveViewDemo.Gluster.Volume
+    alias GlusterDashboard.Gluster.Volume
 
     @valid_attrs %{arbiter_count: 42, disperse_count: 42, disperse_redundancy_count: 42, health: "some health", inodes_total: 42, inodes_used: 42, name: "some name", num_bricks: 42, num_subvols: 42, replica_count: 42, size_total: 42, size_used: 42, state: "some state", transport: "some transport", type: "some type"}
     @update_attrs %{arbiter_count: 43, disperse_count: 43, disperse_redundancy_count: 43, health: "some updated health", inodes_total: 43, inodes_used: 43, name: "some updated name", num_bricks: 43, num_subvols: 43, replica_count: 43, size_total: 43, size_used: 43, state: "some updated state", transport: "some updated transport", type: "some updated type"}
@@ -152,7 +152,7 @@ defmodule LiveViewDemo.GlusterTest do
   end
 
   describe "subvols" do
-    alias LiveViewDemo.Gluster.Subvol
+    alias GlusterDashboard.Gluster.Subvol
 
     @valid_attrs %{arbiter_count: 42, disperse_count: 42, disperse_redundancy_count: 42, health: "some health", num_bricks: 42, replica_count: 42, type: "some type"}
     @update_attrs %{arbiter_count: 43, disperse_count: 43, disperse_redundancy_count: 43, health: "some updated health", num_bricks: 43, replica_count: 43, type: "some updated type"}
@@ -223,7 +223,7 @@ defmodule LiveViewDemo.GlusterTest do
   end
 
   describe "options" do
-    alias LiveViewDemo.Gluster.Opton
+    alias GlusterDashboard.Gluster.Opton
 
     @valid_attrs %{name: "some name", value: "some value"}
     @update_attrs %{name: "some updated name", value: "some updated value"}
@@ -284,7 +284,7 @@ defmodule LiveViewDemo.GlusterTest do
   end
 
   describe "bricks" do
-    alias LiveViewDemo.Gluster.Brick
+    alias GlusterDashboard.Gluster.Brick
 
     @valid_attrs %{block_size: 42, device: "some device", fs: "some fs", inodes_total: 42, inodes_used: 42, mount_options: "some mount_options", path: "some path", pid: 42, port: 42, size_total: 42, size_used: 42, state: "some state"}
     @update_attrs %{block_size: 43, device: "some updated device", fs: "some updated fs", inodes_total: 43, inodes_used: 43, mount_options: "some updated mount_options", path: "some updated path", pid: 43, port: 43, size_total: 43, size_used: 43, state: "some updated state"}

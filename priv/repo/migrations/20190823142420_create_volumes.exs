@@ -1,4 +1,4 @@
-defmodule LiveViewDemo.Repo.Migrations.CreateVolumes do
+defmodule GlusterDashboard.Repo.Migrations.CreateVolumes do
   use Ecto.Migration
 
   def change do

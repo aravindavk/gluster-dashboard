@@ -1,5 +1,5 @@
-defmodule LiveViewDemoWeb.PageControllerTest do
-  use LiveViewDemoWeb.ConnCase
+defmodule GlusterDashboardWeb.PageControllerTest do
+  use GlusterDashboardWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

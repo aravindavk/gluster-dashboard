@@ -1,4 +1,4 @@
-defmodule LiveViewDemo.Repo.Migrations.CreatePeers do
+defmodule GlusterDashboard.Repo.Migrations.CreatePeers do
   use Ecto.Migration
 
   def change do

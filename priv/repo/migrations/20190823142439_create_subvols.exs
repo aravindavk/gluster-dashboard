@@ -1,4 +1,4 @@
-defmodule LiveViewDemo.Repo.Migrations.CreateSubvols do
+defmodule GlusterDashboard.Repo.Migrations.CreateSubvols do
   use Ecto.Migration
 
   def change do
